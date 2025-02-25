@@ -1,0 +1,25 @@
+{
+    "name": "football-postgres-connector",
+    "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "tasks.max": "1",
+        "database.hostname": "host.docker.internal",
+        "database.port": "5432",
+        "database.user": "postgres",
+        "database.password": "Harena2032",
+        "database.dbname": "matchIq",
+        "topic.prefix": "football",
+        "schema.include.list": "public",
+        "table.include.list": "public.football_bookmaker,public.football_coach,public.football_coachcareer,public.football_country,public.football_fixture,public.football_fixturecoach, public.football_fixtureevent,public.football_fixturelineup,public.football_fixturelineupplayer,public.football_fixtureplayerstatistic,public.football_fixturescore,public.football_fixturestatistic,public.football_fixturestatus,public.football_league,public.football_odds,public.football_oddshistory,public.football_oddstype,public.football_oddsvalue,public.football_player,public.football_playerinjury, public.football_playerstatistics, public.football_season, public.football_standing, public.football_team,public.football_venue, public.football_playerteam, public.football_playertransfer, public.football_teamplayer, public.football_teamstatistics, public.football_playersideline, public.football_updatelog",
+        "plugin.name": "pgoutput",
+        
+        "transforms": "unwrap",
+        "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+        "transforms.unwrap.drop.tombstones": "false",
+        
+        "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "key.converter.schemas.enable": "false",
+        "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "value.converter.schemas.enable": "false"
+    }
+}

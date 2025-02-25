@@ -1,0 +1,125 @@
+Récapitulatif du Modèle de matchIQ
+Le modèle de matchIQ est une base de données relationnelle conçue pour gérer les compétitions de football, en suivant les équipes, les joueurs, les matchs (fixtures), les statistiques et bien plus. Voici les tables principales, leurs données et les liaisons entre elles :
+
+1. Gestion des pays et infrastructures
+Country : Gère les pays.
+
+Clés : id, name, code, flag_url
+Relations :
+League (1-N)
+Venue (1-N)
+Team (1-N)
+Player (1-N)
+Venue : Gère les stades.
+
+Clés : id, name, city, country_id, capacity
+Relations :
+Team (1-N)
+Fixture (1-N)
+2. Gestion des compétitions et saisons
+League : Contient les ligues et coupes.
+
+Clés : id, name, country_id
+Relations :
+Season (1-N)
+Fixture (1-N)
+Season : Gère les saisons d'une ligue.
+
+Clés : id, league_id, year, start_date, end_date
+Relations :
+Fixture (1-N)
+Standing (1-N)
+3. Gestion des équipes et des joueurs
+Team : Informations des équipes.
+
+Clés : id, name, country_id, venue_id
+Relations :
+Fixture (1-N) (home et away)
+Player (1-N)
+Standing (1-N)
+Player : Contient les joueurs.
+
+Clés : id, name, team_id, position
+Relations :
+FixtureEvent (1-N)
+FixturePlayerStatistic (1-N)
+Coach : Informations sur les entraîneurs.
+
+Clés : id, name, nationality, team_id
+Relations :
+FixtureCoach (1-N)
+4. Gestion des matchs (Fixtures)
+Fixture : Stocke les matchs.
+
+Clés : id, league_id, season_id, home_team_id, away_team_id, venue_id, status_id
+Relations :
+FixtureEvent (1-N)
+FixtureScore (1-N)
+FixtureStatistic (1-N)
+FixtureLineup (1-N)
+FixturePlayerStatistic (1-N)
+Odds (1-N)
+FixtureStatus : Contient les statuts des matchs.
+
+Clés : id, short_code, status_type
+Relations :
+Fixture (1-N)
+5. Gestion des événements de matchs et statistiques
+FixtureEvent : Stocke les événements des matchs (buts, cartons...).
+
+Clés : id, fixture_id, team_id, player_id, event_type
+Relations :
+Fixture (N-1)
+Player (N-1)
+FixtureScore : Stocke les scores par équipe.
+
+Clés : id, fixture_id, team_id, halftime, fulltime
+FixtureStatistic : Contient les statistiques par match.
+
+Clés : id, fixture_id, team_id, stat_type, value
+FixturePlayerStatistic : Stocke les performances des joueurs.
+
+Clés : id, fixture_id, player_id, team_id, rating, goals_scored, assists
+6. Gestion des compositions et entraîneurs
+FixtureLineup : Composition d'une équipe pour un match.
+
+Clés : id, fixture_id, team_id, formation
+Relations :
+FixtureLineupPlayer (1-N)
+FixtureLineupPlayer : Joueurs dans la composition.
+
+Clés : id, lineup_id, player_id, position, number
+FixtureCoach : Entraîneurs des matchs.
+
+Clés : id, fixture_id, team_id, coach_id
+7. Gestion des classements
+Standing : Classement des équipes par saison.
+Clés : id, season_id, team_id, rank, points, goals_diff
+8. Gestion des paris et cotes
+Bookmaker : Stocke les bookmakers.
+
+Clés : id, name, logo_url
+OddsType : Types de paris possibles.
+
+Clés : id, name, category
+OddsValue : Valeurs des paris (ex: Victoire Domicile, Nul).
+
+Clés : id, odds_type_id, name
+Odds : Cotes des matchs.
+
+Clés : id, fixture_id, bookmaker_id, odds_type_id, odds_value_id, value
+OddsHistory : Historique des variations de cotes.
+
+Clés : id, odds_id, old_value, new_value
+9. Gestion des logs et mises à jour
+UpdateLog : Stocke l'historique des mises à jour.
+Clés : id, table_name, record_id, update_type, update_by
+Résumé des relations clés
+Un pays peut avoir plusieurs ligues, équipes et joueurs.
+Une ligue est liée à plusieurs saisons et matchs.
+Une saison contient plusieurs équipes dans le classement.
+Un match implique deux équipes, un stade et un statut.
+Chaque match a des événements, statistiques, compositions et cotes.
+Les joueurs ont des performances individuelles et des événements associés.
+Les classements sont mis à jour par saison et par équipe.
+Les cotes et leurs évolutions sont stockées pour les paris.

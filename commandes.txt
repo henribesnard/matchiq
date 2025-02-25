@@ -1,0 +1,65 @@
+# Charger tous les matchs d'une ligue pour une saison spécifique
+python manage.py load_fixtures --league 39 --season 2023 --timezone Europe/Paris
+
+# Charger les matchs de plusieurs ligues pour une saison
+python manage.py load_fixtures --league 39,61,140 --season 2023 --timezone Europe/Paris
+
+# Charger les matchs d'une ligue pour plusieurs saisons
+python manage.py load_fixtures --league 39 --season 2022,2023 --timezone Europe/Paris
+
+# Charger les matchs des 5 prochains jours
+python manage.py load_fixtures --league 39,61,140 --from (Get-Date -Format "yyyy-MM-dd") --to (Get-Date).AddDays(5).ToString("yyyy-MM-dd") --timezone Europe/Paris
+
+# Charger les matchs des 7 derniers jours
+python manage.py load_fixtures --league 39,61,140 --from (Get-Date).AddDays(-7).ToString("yyyy-MM-dd") --to (Get-Date -Format "yyyy-MM-dd") --timezone Europe/Paris
+
+# Charger les matchs des 7 derniers jours et des 7 prochains jours
+python manage.py load_fixtures --league 39,61,140 --from (Get-Date).AddDays(-7).ToString("yyyy-MM-dd") --to (Get-Date).AddDays(7).ToString("yyyy-MM-dd") --timezone Europe/Paris
+
+# Charger les matchs pour une date spécifique
+python manage.py load_fixtures --league 39,61,140 --date 2023-02-24 --timezone Europe/Paris
+
+# Charger les matchs pour une période spécifique
+python manage.py load_fixtures --league 39,61,140 --from 2023-01-01 --to 2023-01-31 --timezone Europe/Paris
+
+# Charger les X prochains matchs
+python manage.py load_fixtures --league 39,61,140 --next 20 --timezone Europe/Paris
+
+# Charger les X derniers matchs
+python manage.py load_fixtures --league 39,61,140 --last 20 --timezone Europe/Paris
+
+# Charger les X derniers matchs avec statut terminé
+python manage.py load_fixtures --league 39,61,140 --last 20 --status FT,AET,PEN --timezone Europe/Paris
+
+# Charger les matchs d'une équipe spécifique (tous)
+python manage.py load_fixtures --team 85 --timezone Europe/Paris
+
+# Charger les X derniers matchs d'une équipe
+python manage.py load_fixtures --team 85 --last 10 --timezone Europe/Paris
+
+# Charger les matchs d'une équipe pour une saison
+python manage.py load_fixtures --team 85 --season 2023 --timezone Europe/Paris
+
+# Charger les matchs d'une équipe sur une période
+python manage.py load_fixtures --team 85 --from 2023-01-01 --to 2023-06-30 --timezone Europe/Paris
+
+# Charger les matchs par round (journée de championnat)
+python manage.py load_fixtures --league 39 --season 2023 --round "Regular Season - 1" --timezone Europe/Paris
+
+# Charger les matchs actuellement en direct
+python manage.py load_fixtures --live --timezone Europe/Paris
+
+# Charger les matchs en direct d'une ligue spécifique
+python manage.py load_fixtures --league 39 --live --timezone Europe/Paris
+
+# Charger les matchs à domicile d'une équipe pour une saison
+python manage.py load_fixtures --team 85 --season 2023 --venue 678 --timezone Europe/Paris
+
+# Charger les matchs à venir entre deux dates pour une ligue avec un statut spécifique
+python manage.py load_fixtures --league 39 --from (Get-Date -Format "yyyy-MM-dd") --to (Get-Date).AddDays(30).ToString("yyyy-MM-dd") --status NS,TBD --timezone Europe/Paris
+
+# Mode test (afficher les paramètres sans exécuter l'appel API)
+python manage.py load_fixtures --league 39,61,140 --from (Get-Date -Format "yyyy-MM-dd") --to (Get-Date).AddDays(7).ToString("yyyy-MM-dd") --timezone Europe/Paris --dry-run
+
+# Inclure les événements, compositions et statistiques
+python manage.py load_fixtures --league 39 --last 10 --include-events --include-lineups --include-statistics --timezone Europe/Paris
