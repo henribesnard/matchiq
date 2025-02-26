@@ -1,0 +1,70 @@
+# Charger une ligue spécifique par son ID
+python manage.py load_leagues --id 39
+
+# Charger les ligues pour une saison spécifique
+python manage.py load_leagues --season 2023
+
+# Charger les ligues d'un pays spécifique
+python manage.py load_leagues --country France
+
+# Charger les ligues par leur nom
+python manage.py load_leagues --name "Ligue 1"
+
+# Charger toutes les ligues actuellement en cours
+python manage.py load_leagues --current
+
+# Charger les N dernières ligues ajoutées à l'API
+python manage.py load_leagues --last 100
+
+# Charger les ligues par code de pays (FR, GB, ES, etc.)
+python manage.py load_leagues --code FR
+
+# Charger les ligues par type (championnat ou coupe)
+python manage.py load_leagues --type league
+python manage.py load_leagues --type cup
+
+# Charger les ligues où une équipe spécifique a joué (par ID d'équipe)
+python manage.py load_leagues --team 85
+
+# Rechercher des ligues par un terme de recherche
+python manage.py load_leagues --search "Premier"
+
+# Charger les ligues d'un pays pour une saison spécifique
+python manage.py load_leagues --country France --season 2023
+
+# Charger les championnats (pas les coupes) d'un pays
+python manage.py load_leagues --country Spain --type league
+
+# Charger une ligue spécifique pour une saison spécifique
+python manage.py load_leagues --id 39 --season 2023
+
+# Charger les ligues actuelles d'un pays
+python manage.py load_leagues --country Germany --current
+
+# Charger plusieurs ligues par leurs IDs
+python manage.py load_leagues --id 39,61,140
+
+# Charger les ligues pour plusieurs saisons
+python manage.py load_leagues --season 2022,2023
+
+# Spécifier un fuseau horaire pour les données
+python manage.py load_leagues --id 39 --timezone Europe/Paris
+
+# Mode simulation (affiche la requête sans l'exécuter)
+python manage.py load_leagues --country Italy --season 2023 --dry-run
+
+# Combinaison complète de plusieurs paramètres
+python manage.py load_leagues --country England --season 2023 --type league --current
+
+# Toutes les ligues actuellement en cours
+python manage.py load_leagues --current
+
+# Les 500 dernières ligues ajoutées
+python manage.py load_leagues --last 500
+
+# Toutes les ligues des grands pays européens pour les saisons récentes
+python manage.py load_leagues --country England,Spain,France,Germany,Italy --season 2021,2022,2023
+
+# Tous les types de compétitions actuelles
+python manage.py load_leagues --current --type league
+python manage.py load_leagues --current --type cup

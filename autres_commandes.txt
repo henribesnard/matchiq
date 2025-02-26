@@ -1,0 +1,93 @@
+# Pour charger les country
+python manage.py load_countries
+
+# Charger les status
+python manage.py load_fixture_statuses
+
+# Lineups
+python manage.py load_fixture_lineups --fixture_external_id=867983
+python manage.py load_fixture_lineups --fixture_external_id=867983 --force # pour forcer
+python manage.py load_fixture_lineups --all
+
+# Charger les stats pour tous les matchs sans stats
+python manage.py load_fixture_stats --all  
+python manage.py load_fixture_stats --fixture_external_id=867983
+
+# Fixture event
+python manage.py load_fixture_events --fixture_external_id=867983
+python manage.py load_fixture_events --all
+
+# Fixture player stats
+python manage.py load_fixture_player_stats --fixture_external_id=867983
+python manage.py load_fixture_player_stats --all
+
+# charger les  paris 
+python manage.py load_odds_types
+python manage.py load_fixture_odds --fixture_external_id=867983
+python manage.py load_fixture_odds --all
+
+
+# Charger les h2h 
+python manage.py load_fixture_h2h --all
+python manage.py load_fixture_h2h --fixture_external_id=867983
+python manage.py load_fixture_h2h --team_external_ids=33-34 --limit=20 --season=2023
+
+# Charger les joueurs 
+python manage.py load_players --id 276
+python manage.py load_players --search "Neymar"
+python manage.py load_players --team 85
+python manage.py load_players --league 39 --season 2023
+-- Pour avoir tous les joeurs 
+python manage.py load_players --page 1 --limit 100
+python manage.py load_players --page 2 --limit 100
+python manage.py load_players --page 3 --limit 100
+
+
+# Charger les blessures 
+python manage.py load_player_injuries --league 2 --season 2020
+python manage.py load_player_injuries --fixture 686314
+python manage.py load_player_injuries --ids 686314-686315-686316
+python manage.py load_player_injuries --team 85 --season 2020
+python manage.py load_player_injuries --player 865 --season 2020
+python manage.py load_player_injuries --date 2021-04-07
+python manage.py load_player_injuries --league 2 --season 2020 --team 85
+python manage.py load_player_injuries --date 2021-04-07 --timezone Europe/Paris --team 85
+
+# Charger un entraîneur
+python manage.py load_coaches --id 40
+python manage.py load_coaches --team 85
+python manage.py load_coaches --search "Klopp"
+python manage.py load_coaches --id 40 --include-career
+python manage.py load_coaches --search "Tuchel" --include-career --create-teams --create-countries
+
+
+# Charger les classements 
+python manage.py load_standings --league 39 --season 2019
+python manage.py load_standings --team 40 --season 2019
+python manage.py load_standings --league 39 --season 2019 --create-missing
+python manage.py load_standings --league 39 --season 2019 --update-existing
+python manage.py load_standings --league 39 --season 2019 --dry-run
+
+
+# Charger l'historique d'équipes d'un joueur
+python manage.py load_player_team_history --player 276
+python manage.py load_player_team_history --player 276 --create-teams --create-seasons
+python manage.py load_player_team_history --player 276 --update-current-team
+python manage.py load_player_team_history --player 276 --dry-run
+
+
+# Charger l'effectif d'une équipe
+python manage.py load_team_squads --team 33
+python manage.py load_team_squads --player 276
+python manage.py load_team_squads --team 33 --create-players
+python manage.py load_team_squads --team 33 --update-existing
+python manage.py load_team_squads --team 33 --deactivate-missing
+python manage.py load_team_squads --team 33 --create-players --update-existing --deactivate-missing
+python manage.py load_team_squads --team 33 --dry-run
+
+
+# Charger les statistiques d'une équipe
+python manage.py load_team_statistics --team 33 --league 39 --season 2019
+python manage.py load_team_statistics --team 33 --league 39 --season 2019 --date 2019-10-08
+python manage.py load_team_statistics --team 33 --league 39 --season 2019 --create-missing
+python manage.py load_team_statistics --team 33 --league 39 --season 2019 --dry-run

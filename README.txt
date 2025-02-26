@@ -1,14 +1,6 @@
-# Pour charger les country
-python manage.py load_countries
 
-# Pour charger toutes les leagues
-python manage.py load_leagues
 
-# Pour charger une league spécifique
-python manage.py load_leagues --league_id=39
 
-# Charger les status
-python manage.py load_fixture_statuses
 
 
 # Lineups

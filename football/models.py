@@ -1052,6 +1052,25 @@ class Standing(models.Model):
         self.played = self.won + self.drawn + self.lost
         super().save(*args, **kwargs)
 
+class FixtureH2H(models.Model):
+    """Modèle pour stocker les relations entre un match de référence et ses confrontations directes."""
+    reference_fixture = models.ForeignKey('Fixture', on_delete=models.CASCADE, related_name='h2h_references')
+    related_fixture = models.ForeignKey('Fixture', on_delete=models.CASCADE, related_name='h2h_related')
+    
+    # Métadonnées
+    update_by = models.CharField(max_length=50, default="manual")
+    update_at = models.DateTimeField(default=now)
+    
+    class Meta:
+        unique_together = ['reference_fixture', 'related_fixture']
+        indexes = [
+            models.Index(fields=['reference_fixture']),
+            models.Index(fields=['related_fixture']),
+        ]
+    
+    def __str__(self):
+        return f"H2H: {self.reference_fixture} - {self.related_fixture}"
+
 class PlayerSideline(models.Model):
     """
     Historique des périodes d'indisponibilité des joueurs 

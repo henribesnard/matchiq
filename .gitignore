@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -170,51 +169,3 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
-=======
-# Environnements virtuels
-.venv/
-venv/
-ENV/
-env/
-
-# Fichiers d'environnement contenant des secrets
-.env
-*.env
-
-# Fichiers Python compilés
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-
-# Distribution / packaging
-dist/
-build/
-*.egg-info/
-
-# Fichiers SQLite
-*.sqlite3
-db.sqlite3
-
-# Logs
-*.log
-
-# Dossiers spécifiques à Django
-media/
-static/collected/
-
-# Fichiers de configuration locaux
-local_settings.py
-
-# Fichiers d'IDE et d'éditeurs
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
-
-# Fichiers système
-.DS_Store
-Thumbs.db
->>>>>>> 884e192 (Initial commit without sensitive data)
